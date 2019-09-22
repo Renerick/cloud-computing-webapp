@@ -1,6 +1,6 @@
 <script>
-    import Tree from "./components/tree/Tree.svelte";
-    import { draggable, droppable } from "./components/dnd/svelte-dnd.js";
+    import Tree from "./components/Tree.svelte";
+    import { draggable, droppable } from "./components/svelte-dnd.js";
     import { store, move } from "./store/store.js";
 </script>
 
