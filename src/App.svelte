@@ -1,41 +1,32 @@
 <script>
-    import Tree from "./components/Tree.svelte";
-    import Header from "./Header.svelte";
-
-    let items = {
-        name: "root",
-        children: [
-            {
-                name: "test",
-                children: [
-                    {
-                        name: "test2",
-                        children: [{ name: "test3" }]
-                    }
-                ]
-            },
-            {
-                name: "test2",
-                children: [
-                    {
-                        name: "test2",
-                        children: [{ name: "test3" }]
-                    },
-                    {
-                        name: "test2",
-                        children: [{ name: "test3" }]
-                    }
-                ]
-            }
-        ]
-    };
+    import Tree from "./components/tree/Tree.svelte";
+    import { draggable, droppable } from "./components/dnd/svelte-dnd.js";
+    import { store, move } from "./store/store.js";
 </script>
 
 <style>
+    .tree :global(ul) {
+        list-style: none;
+        padding-left: 10px;
+        margin: 0;
+    }
 
+    .list-item {
+        border-left: solid orange;
+        padding: 10px 20px;
+    }
 </style>
 
-<h1>hello world</h1>
-<Tree item={items} let:item let:leaf>
-    <div class="list-item" class:leaf>{item.name}</div>
-</Tree>
+<div class="tree">
+    <Tree item={$store} let:item let:path>
+        <div
+            use:draggable={{ item: item, path: path }}
+            use:droppable
+            on:dropped={e => {
+                move(e.detail.data.path, path);
+            }}
+            class="list-item">
+            {path} {item.name}
+        </div>
+    </Tree>
+</div>

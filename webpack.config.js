@@ -6,7 +6,7 @@ module.exports = {
         alias: {
             svelte: path.resolve('node_modules', 'svelte')
         },
-        extensions: ['.js', '.svelte'],
+        extensions: ['.mjs', '.js', '.svelte'],
     },
     output: {
         filename: "bundle.js",

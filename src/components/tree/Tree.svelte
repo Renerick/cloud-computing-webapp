@@ -3,27 +3,26 @@
     export let childrenMember = "children";
     export let visible = true;
     export let renderRoot = false;
-
-    let leaf;
-    $: leaf = !item[childrenMember];
+    export let path = "";
 </script>
 
 {#if renderRoot}
     <div on:click={() => (visible = !visible)}>
-        <slot {item} {leaf} />
+        <slot {item} {path} />
     </div>
 {/if}
 
-{#if visible && !leaf}
+{#if visible && item[childrenMember]}
     <ul>
-        {#each item[childrenMember] as child}
+        {#each item[childrenMember] as child (child._id)}
             <li>
                 <svelte:self
-                    item={child}
+                    bind:item={child}
+                    renderRoot={true}
+                    path={path + '/' + child._id}
                     let:item={nestedItem}
-                    let:leaf={nestedLeaf}
-                    renderRoot={true}>
-                    <slot item={nestedItem} leaf={nestedLeaf} />
+                    let:path={nestedPath}>
+                    <slot item={nestedItem} path={nestedPath} />
                 </svelte:self>
             </li>
         {/each}
