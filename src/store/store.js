@@ -11,36 +11,39 @@ const root = {
                 {
                     _id: "2",
                     name: "2",
-                    children: [{ _id: "3", name: "3" }]
+                    children: [{
+                        _id: "3",
+                        name: "3"
+                    }]
                 }
             ]
         },
-        // {
-        //     _id: "4",
-        //     name: "4",
-        //     children: [
-        //         {
-        //             _id: "5",
-        //             name: "5",
-        //             children: [
-        //                 {
-        //                     _id: "6",
-        //                     name: "6"
-        //                 }
-        //             ]
-        //         },
-        //         {
-        //             _id: "7",
-        //             name: "7",
-        //             children: [
-        //                 {
-        //                     _id: "8",
-        //                     name: "8"
-        //                 }
-        //             ]
-        //         }
-        //     ]
-        // }
+        {
+            _id: "4",
+            name: "4",
+            children: [
+                {
+                    _id: "5",
+                    name: "4-5",
+                    children: [
+                        {
+                            _id: "6",
+                            name: "4-5-6"
+                        }
+                    ]
+                },
+                {
+                    _id: "7",
+                    name: "4-7",
+                    children: [
+                        {
+                            _id: "8",
+                            name: "4-7-8"
+                        }
+                    ]
+                }
+            ]
+        }
     ]
 };
 

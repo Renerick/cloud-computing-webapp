@@ -1,9 +1,17 @@
 <script>
-    import { store, move } from "./store/store.js";
+    import Nav from "./Nav.svelte";
+    import Explorer from "./Explorer.svelte";
 </script>
 
 <style>
 
 </style>
 
-<h1>Hello world</h1>
+<div class="h-screen pl-4 flex flex-col">
+    <div class="h-20">
+        <Nav />
+    </div>
+    <div class="h-full">
+        <Explorer />
+    </div>
+</div>
