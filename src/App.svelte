@@ -1,6 +1,6 @@
 <script>
     import Nav from "./Nav.svelte";
-    import Explorer from "./Explorer.svelte";
+    import GroupExplorer from "./GroupExplorer.svelte";
 </script>
 
 <style>
@@ -12,6 +12,6 @@
         <Nav />
     </div>
     <div class="h-full">
-        <Explorer />
+        <GroupExplorer />
     </div>
 </div>
