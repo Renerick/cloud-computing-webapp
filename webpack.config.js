@@ -1,4 +1,5 @@
-let path = require('path');
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: './src/main.js',
@@ -20,20 +21,26 @@ module.exports = {
                     loader: "svelte-loader",
                     options: {
                         emitCss: true,
-                        hotReload: true
+                        hotReload: true,
                     }
                 }
             },
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
-                    'css-loader'
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'postcss-loader'
                 ]
             }
         ]
     },
     devServer: {
         contentBase: './public'
-    }
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].css'
+        })
+    ],
 };
