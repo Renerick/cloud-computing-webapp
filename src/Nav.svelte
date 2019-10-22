@@ -1,1 +1,1 @@
-<h1 class="text-4xl">Управление группами</h1>
+<h1 class="text-4xl">Group management</h1>

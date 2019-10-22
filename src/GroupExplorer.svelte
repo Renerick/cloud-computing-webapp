@@ -1,34 +1,75 @@
 <script>
-    import { store } from "./store/store.js";
-    let group;
-    let student;
+    import { onMount } from "svelte";
+    import { fly } from "svelte/transition";
+    import { quadIn } from "svelte/easing";
+    import GroupExplorerList from "./GroupExplorerList.svelte";
+    import {
+        store,
+        loadGroups,
+        loadStudents,
+        loadStudent
+    } from "./store/GroupExplorerStore.js";
 
-    $: {
-        if (!group || (student && student.group != group._id))
-            student = undefined;
-    }
+    onMount(() => loadGroups());
 </script>
 
-<div class="flex h-full">
-    <div class="hidden md:block w-1/3">
-        <h2>Groups</h2>
-        {#each $store.groups as item, j (item._id)}
-            <div on:click={() => (group = item)}>{item.name}</div>
-        {/each}
+<style>
+    .tr-size {
+        transition: flex-grow 550ms;
+    }
+</style>
+
+<div class="flex h-full overflow-hidden justify-start">
+    <div
+        class="tr-size relative overflow-hidden {$store.group ? 'sm:flex-grow-1 flex-grow-eps' : 'flex-grow-1'}">
+        <div class="absolute">
+            <GroupExplorerList
+                array={$store.groups}
+                on:selected={e => loadStudents(e.detail)}>
+                <div slot="item" let:item>{item.name}</div>
+            </GroupExplorerList>
+        </div>
     </div>
-    {#if group}
-        <div class="hidden md:block md:w-1/3">
-            <button on:click={() => (group = undefined)}>close</button>
-            <h2>{group.name}</h2>
-            {#each $store.students.filter(s => s.group == group._id) as item, j (item._id)}
-                <div on:click={() => (student = item)}>{item.name}</div>
-            {/each}
+    <div
+        class="tr-size relative overflow-hidden bg-gray-600 {$store.student ? 'sm:flex-grow-1 flex-grow-eps' : $store.group ? 'flex-grow-1' : 'flex-grow-eps'}">
+        {#if $store.group}
+            <div class="absolute">
+                <GroupExplorerList
+                    object={$store.group.group}
+                    array={$store.group.students}
+                    on:selected={e => loadStudent(e.detail)}>
+                    <div slot="listHeader" let:obj class="flex">
+                        <button
+                            on:click={() => store.set({
+                                    ...$store,
+                                    group: null
+                                })}>
+                            Close
+                        </button>
+                        <h2 class="text-xl">{obj.name}</h2>
+                    </div>
+                    <div slot="item" let:item>{item.name}</div>
+                </GroupExplorerList>
+            </div>
+        {/if}
+    </div>
+    <div
+        class="tr-size relative overflow-hidden {$store.student ? 'flex-grow-1' : 'flex-grow-eps'}">
+        <div class="absolute">
+            {#if $store.student}
+                <GroupExplorerList object={$store.student}>
+                    <div slot="listHeader" let:obj class="flex">
+                        <button
+                            on:click={() => store.set({
+                                    ...$store,
+                                    student: null
+                                })}>
+                            Close
+                        </button>
+                        <h2 class="text-xl">{obj.name}</h2>
+                    </div>
+                </GroupExplorerList>
+            {/if}
         </div>
-    {/if}
-    {#if student}
-        <div class="">
-            <button on:click={() => (student = undefined)}>close</button>
-            <h2>{student.name}</h2>
-        </div>
-    {/if}
+    </div>
 </div>
