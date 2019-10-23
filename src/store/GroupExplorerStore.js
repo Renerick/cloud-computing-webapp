@@ -4,19 +4,99 @@ const data = {
     groups: [
         {
             _id: "1",
-            name: "Group 1"
+            name: "Group 1",
+            studyingForm: "fullTime",
+            year: 1
         },
         {
             _id: "2",
-            name: "Group 2"
+            name: "Group 2",
+            studyingForm: "fullTime",
+            year: 2
         },
         {
             _id: "3",
-            name: "Group 3"
+            name: "Group 3",
+            studyingForm: "extramural",
+            year: 3
         },
         {
             _id: "4",
-            name: "Group 4"
+            name: "Group 4",
+            studyingForm: "extramural",
+            year: 4
+        },
+        {
+            _id: "5",
+            name: "Group 1",
+            studyingForm: "fullTime",
+            year: 1
+        },
+        {
+            _id: "6",
+            name: "Group 2",
+            studyingForm: "fullTime",
+            year: 2
+        },
+        {
+            _id: "7",
+            name: "Group 3",
+            studyingForm: "extramural",
+            year: 3
+        },
+        {
+            _id: "8",
+            name: "Group 4",
+            studyingForm: "extramural",
+            year: 4
+        },
+        {
+            _id: "9",
+            name: "Group 1",
+            studyingForm: "fullTime",
+            year: 1
+        },
+        {
+            _id: "10",
+            name: "Group 2",
+            studyingForm: "fullTime",
+            year: 2
+        },
+        {
+            _id: "11",
+            name: "Group 3",
+            studyingForm: "extramural",
+            year: 3
+        },
+        {
+            _id: "12",
+            name: "Group 4",
+            studyingForm: "extramural",
+            year: 4
+        },
+        {
+            _id: "13",
+            name: "Group 1",
+            studyingForm: "fullTime",
+            year: 1
+        },
+        {
+            _id: "14",
+            name: "Group 2",
+            studyingForm: "fullTime",
+            year: 2
+        },
+        {
+            _id: "15",
+            name: "Group 3",
+            studyingForm: "extramural",
+            year: 3
+        },
+        {
+            _id: "16",
+            name: "Group 4",
+            studyingForm: "extramural",
+            year: 4
         },
     ],
     students: [
@@ -70,7 +150,7 @@ const data = {
 
 const store_ = {
     groups: [],
-    group: null,
+    selectedGroup: null,
     student: null
 }
 
@@ -85,10 +165,11 @@ export function loadGroups() {
 
 export function loadStudents(group) {
     store.update((s) => {
-        s.group = {
+        s.selectedGroup = {
             group: group,
             students: data.students.filter(s => s.group === group._id)
         };
+        s.groups = s.groups.map(g => ({...g, active: g === s.selectedGroup.group}))
         return s;
     })
 }
@@ -101,7 +182,7 @@ export function loadStudent(student) {
 }
 
 store.subscribe(v => {
-    if (v.student && (!v.group || v.student.group !== v.group.group._id)) {
+    if (v.student && (!v.selectedGroup || v.student.group !== v.selectedGroup.group._id)) {
         store.set({ ...v, student: null })
     }
 })

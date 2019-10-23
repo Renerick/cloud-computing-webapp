@@ -1,5 +1,18 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   theme: {
+    fontFamily: {
+      'primary': ['"Source Sans Pro"', ...defaultTheme.fontFamily.sans]
+    },
+    colors: {
+      'primary': "#2589BD",
+      'primary-dark': "#16425B",
+      'text': "#242F40",
+      'background': "#F7FAFC",
+      'white': "#FFFFFF",
+      'active': "#E7ECF0"
+    },
     extend: {
       maxWidth: {
         '1/5': '20%',
@@ -10,6 +23,8 @@ module.exports = {
       }
     }
   },
-  variants: {},
+  variants: {
+    borderWidth: ['responsive', 'last', 'hover'],
+  },
   plugins: []
 }
