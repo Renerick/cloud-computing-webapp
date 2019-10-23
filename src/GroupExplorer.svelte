@@ -1,7 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
-    import { quadIn } from "svelte/easing";
+    import { cubicOut } from "svelte/easing";
     import GroupExplorerList from "./GroupExplorerList.svelte";
     import {
         store,
@@ -14,26 +14,24 @@
 </script>
 
 <style>
-    .tr-flex-grow {
-        transition: flex-grow 550ms;
+    .tr-list {
+        transition: opacity 400ms, right 400ms;
     }
 </style>
 
-<div class="flex h-full overflow-hidden justify-start">
-    <div
-        class="tr-flex-grow relative overflow-hidden {$store.group ? 'sm:flex-grow-1 flex-grow-eps' : 'flex-grow-1'} sm:max-w-1/5 bg-red-500">
-        <div class="absolute">
-            <GroupExplorerList
-                array={$store.groups}
-                on:selected={e => loadStudents(e.detail)}>
-                <div slot="item" let:item>{item.name}</div>
-            </GroupExplorerList>
-        </div>
+<div class="h-full w-full overflow-hidden relative sm:flex">
+    <div class="absolute sm:static w-full sm:w-1/5 h-full bg-red-500">
+        <GroupExplorerList
+            array={$store.groups}
+            on:selected={e => loadStudents(e.detail)}>
+            <div slot="item" let:item>{item.name}</div>
+        </GroupExplorerList>
     </div>
     <div
-        class="tr-flex-grow relative overflow-hidden bg-gray-600 sm:max-w-2/5 {$store.student ? 'sm:flex-grow-1 flex-grow-eps' : $store.group ? 'flex-grow-1' : 'flex-grow-eps sm:flex-grow-1'}">
+        class="tr-list absolute sm:static w-full sm:w-2/5 h-full bg-gray-600 {$store.group ? 'opacity-100 right-0' : 'opacity-0 -right-full'} sm:opacity-100">
         {#if $store.group}
-            <div class="absolute">
+            <div
+                transition:fly={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}>
                 <GroupExplorerList
                     object={$store.group.group}
                     array={$store.group.students}
@@ -54,22 +52,22 @@
         {/if}
     </div>
     <div
-        class="tr-flex-grow relative overflow-hidden sm:max-w-2/5 {$store.student ? 'flex-grow-1' : 'flex-grow-eps sm:flex-grow-1'}">
-        <div class="absolute">
-            {#if $store.student}
-                <GroupExplorerList object={$store.student}>
-                    <div slot="listHeader" let:obj class="flex">
-                        <button
-                            on:click={() => store.set({
-                                    ...$store,
-                                    student: null
-                                })}>
-                            Close
-                        </button>
-                        <h2 class="text-xl">{obj.name}</h2>
-                    </div>
-                </GroupExplorerList>
-            {/if}
+        class="tr-list absolute sm:static w-full sm:w-2/5 h-full bg-green-800 {$store.student ? 'opacity-100 right-0' : 'opacity-0 -right-full'} sm:opacity-100">
+        {#if $store.student}
+        <div transition:fly={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}>
+            <GroupExplorerList object={$store.student}>
+                <div slot="listHeader" let:obj class="flex">
+                    <button
+                        on:click={() => store.set({
+                                ...$store,
+                                student: null
+                            })}>
+                        Close
+                    </button>
+                    <h2 class="text-xl">{obj.name}</h2>
+                </div>
+            </GroupExplorerList>
         </div>
+        {/if}
     </div>
 </div>
