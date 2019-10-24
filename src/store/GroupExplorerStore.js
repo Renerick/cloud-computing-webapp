@@ -263,14 +263,10 @@ export function deleteGroup(group) {
 export function updateStudent(student, field, value) {
     store.update((s) => {
         student[field] = value;
-        console.log(s);
-        if (field === "group")
-            replace("/explore/" + value + "/" + student._id)
-            s.selectedGroup = {
-                ...s.selectedGroup, students: data.students.filter(s => s.group === s.selectedGroup.group._id)
-            };
         return s;
     })
+    if (field === "group")
+        replace("/explore/" + value + "/" + student._id)
 }
 
 export function deleteStudent(student) {
