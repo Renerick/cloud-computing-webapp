@@ -7,7 +7,7 @@
     export let invalid = false;
     export let plaintext = false;
     export let addon = false;
-    export let value = "";
+    export let value;
     export let files = "";
     export let readonly;
     export let id = "";
@@ -20,6 +20,8 @@
 
     let tag;
     let inputElement;
+
+    $: checked = !!value;
 
     export function focus() {
         inputElement.focus();
@@ -130,7 +132,7 @@
             on:change
             on:input
             bind:checked
-            bind:value
+            on:change={() => (value = checked)}
             {readonly}
             class={classes}
             {name}
@@ -146,9 +148,8 @@
             on:keydown
             on:keypress
             on:keyup
-            on:change
+            on:change={() => (value = checked)}
             on:input
-            bind:value
             {readonly}
             class={classes}
             {name}
@@ -309,9 +310,9 @@
         on:input
         {name}
         {disabled}
-        bind:value={value}>
+        bind:value>
         {#each selectOptions as option}
-            <option value="{option}">{option}</option>
+            <option value={option}>{option}</option>
         {/each}
     </select>
 {/if}

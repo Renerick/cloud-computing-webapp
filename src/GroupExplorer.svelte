@@ -3,22 +3,28 @@
     import { fly } from "svelte/transition";
     import { cubicOut } from "svelte/easing";
 
+    import { location, replace } from "svelte-spa-router";
+
     import GroupListItem from "./GroupListItem.svelte";
-    import HiddenEditor from "./HiddenEditor.svelte";
+    import StudentListItem from "./StudentListItem.svelte";
+    import EditGroup from "./EditGroup.svelte";
     import {
         store,
         loadGroups,
         loadStudents,
         loadStudent,
-        updateGroup
+        updateGroup,
+        deleteGroup,
+        updateStudent,
+        deleteStudent
     } from "./store/GroupExplorerStore.js";
 
     export let params;
 
+    onMount(() => loadGroups());
+
     $: loadStudents(params.group);
     $: loadStudent(params.student);
-
-    onMount(() => loadGroups());
 </script>
 
 <style>
@@ -47,61 +53,65 @@
         md:opacity-100 border-l border-primary">
         {#if $store.selectedGroup}
             <div
-                class="p-2"
+                class="pl-4 pt-4 h-full"
                 transition:fly={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}>
-                <div class="mb-2">
-                    <div class="flex items-center">
+                <div class="mb-6">
+                    <div class="flex items-center mb-2">
                         <a href="#/explore" class="mr-4">
                             <i
                                 class="text-4xl bg-primary-dark zi
                                 zi-cheveron-left" />
                         </a>
-                        <HiddenEditor
+                        <EditGroup
                             value={$store.selectedGroup.group.name}
-                            on:submit={e => updateGroup('name', e.detail)}
-                            inputClass="w-full text-3xl"
-                            let:output>
-                            <h2 class="text-3xl">{output}</h2>
-                        </HiddenEditor>
+                            on:submit={e => updateGroup($store.selectedGroup.group, 'name', e.detail)}
+                            outputClass="w-full text-3xl"
+                            let:output />
+                        <button
+                            on:click={() => {
+                                deleteGroup($store.selectedGroup.group);
+                                replace('/explore');
+                            }}
+                            class="mr-8">
+                            <i class="text-xl bg-primary-dark zi zi-trash" />
+                        </button>
                     </div>
 
                     <div class="table w-full">
                         <div class="table-row">
-                            <HiddenEditor
+                            <EditGroup
                                 value={$store.selectedGroup.group.year}
-                                on:submit={e => updateGroup('year', e.detail)}
+                                on:submit={e => updateGroup($store.selectedGroup.group, 'year', e.detail)}
                                 let:output
                                 inputType="number"
-                                inputClass="w-full"
-                                labelClass="table-cell w-1/4"
-                                label="Year:"
-                                containerClass="table-cell">
-                                <p>{output}</p>
-                            </HiddenEditor>
+                                labelClass="table-cell border-b border-active
+                                w-1/4 text-right pr-4 font-bold"
+                                label="Year"
+                                outputClass="table-cell border-b border-active
+                                hover:bg-active py-2 px-4 cursor-pointer" />
                         </div>
                         <div class="table-row">
-                            <HiddenEditor
+                            <EditGroup
                                 value={$store.selectedGroup.group.studyingForm}
-                                on:submit={e => updateGroup('studyingForm', e.detail)}
+                                on:submit={e => updateGroup($store.selectedGroup.group, 'studyingForm', e.detail)}
                                 let:output
                                 inputType="select"
-                                selectOptions="{['fullTime', 'extramural']}"
-                                inputClass="w-full"
-                                labelClass="table-cell"
-                                label="Form:"
-                                containerClass="table-cell">
-                                <p>{output}</p>
-                            </HiddenEditor>
+                                selectOptions={['fullTime', 'extramural']}
+                                labelClass="table-cell text-right pr-4 font-bold
+                                border-b border-active"
+                                label="Studying form"
+                                outputClass="table-cell hover:bg-active py-2
+                                px-4 cursor-pointer border-b border-active" />
                         </div>
                     </div>
-
                 </div>
                 {#if $store.selectedGroup.students}
+                    <h3 class="text-2xl mb-4">Students</h3>
                     <ul class="overflow-y-auto h-full">
                         {#each $store.selectedGroup.students as item (item._id)}
-                            <li>
+                            <li class="border-b border-primary last:border-b-0">
                                 <a href="/#/explore/{params.group}/{item._id}">
-                                    <div>{item.name}</div>
+                                    <StudentListItem student={item} />
                                 </a>
                             </li>
                         {/each}
@@ -116,13 +126,71 @@
         md:opacity-100">
         {#if $store.student}
             <div
+                class="pl-4 pt-4 h-full"
                 transition:fly={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}>
-                <div let:obj class="flex">
-                    <a href="/#/explore/{params.group}">
+                <div class="flex items-center mb-2">
+                    <a href="#/explore/{params.group}" class="mr-4">
                         <i
                             class="text-4xl bg-primary-dark zi zi-cheveron-left" />
                     </a>
-                    <h2 class="text-xl">{$store.student.name}</h2>
+                    <EditGroup
+                        value={$store.student.name}
+                        on:submit={e => updateStudent($store.student, 'name', e.detail)}
+                        outputClass="w-full text-3xl"
+                        let:output />
+                    <button
+                        on:click={() => {
+                            deleteStudent($store.student);
+                            replace('/explore/' + params.group);
+                        }}
+                        class="mr-8">
+                        <i class="text-xl bg-primary-dark zi zi-trash" />
+                    </button>
+                </div>
+                <img
+                    class="mx-auto"
+                    alt="Full size photo of {$store.student.avatar}"
+                    src={$store.student.avatar} />
+                <div class="table w-full">
+                    <div class="table-row">
+                        <EditGroup
+                            value={$store.student.averageScore}
+                            on:submit={e => updateStudent($store.student, 'averageScore', e.detail)}
+                            let:output
+                            inputType="number"
+                            labelClass="table-cell border-b border-active w-1/4
+                            text-right pr-4 font-bold"
+                            label="AverageScore"
+                            outputClass="table-cell border-b border-active
+                            hover:bg-active py-2 px-4 cursor-pointer" />
+                    </div>
+                    <div class="table-row">
+                        <EditGroup
+                            value={$store.student.type}
+                            on:submit={e => updateStudent($store.student, 'type', e.detail)}
+                            let:output
+                            inputType="select"
+                            selectOptions={['budget', 'commercial', 'targeted']}
+                            labelClass="table-cell text-right pr-4 font-bold
+                            border-b border-active"
+                            label="Studying form"
+                            outputClass="table-cell hover:bg-active py-2 px-4
+                            cursor-pointer border-b border-active" />
+                    </div>
+                    <div class="table-row">
+                        <EditGroup
+                            value={$store.student.academicalDebt}
+                            on:submit={e => updateStudent($store.student, 'academicalDebt', e.detail)}
+                            let:output
+                            inputType="checkbox"
+                            alwaysActive={true}
+                            selectOptions={['budget', 'commercial', 'targeted']}
+                            labelClass="table-cell text-right pr-4 font-bold
+                            border-b border-active"
+                            label="Academical debt"
+                            outputClass="table-cell hover:bg-active py-2 px-4
+                            cursor-pointer border-b border-active" />
+                    </div>
                 </div>
             </div>
         {/if}

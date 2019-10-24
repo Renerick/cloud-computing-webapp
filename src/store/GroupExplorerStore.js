@@ -103,46 +103,90 @@ const data = {
         {
             _id: "St-1-1",
             name: "Student 1-1",
+            avatar: "https://i.pravatar.cc/400?img=12",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
             group: "1"
         },
         {
             _id: "St-1-2",
             name: "Student 1-2",
+            avatar: "https://i.pravatar.cc/400?img=40",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
             group: "1"
         },
         {
             _id: "St-1-3",
             name: "Student 1-3",
+            avatar: "https://i.pravatar.cc/400?img=1",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
             group: "1"
         },
         {
             _id: "St-2-1",
             name: "Student 2-1",
-            group: "2"
-        },
-        {
-            _id: "St-2-2",
-            name: "Student 2-2",
+            avatar: "https://i.pravatar.cc/400?img=51",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
             group: "2"
         },
         {
             _id: "St-2-3",
             name: "Student 2-3",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
+            group: "2"
+        },
+        {
+            _id: "St-2-2",
+            name: "Student 2-2",
+            avatar: "https://i.pravatar.cc/400?img=59",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
             group: "2"
         },
         {
             _id: "St-3-1",
             name: "Student 3-1",
+            avatar: "https://i.pravatar.cc/400?img=60",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
             group: "3"
         },
         {
             _id: "St-3-2",
             name: "Student 3-2",
+            avatar: "https://i.pravatar.cc/400?img=68",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: true,
             group: "3"
         },
         {
             _id: "St-3-3",
             name: "Student 3-3",
+            avatar: "https://i.pravatar.cc/400?img=57",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
             group: "3"
         },
     ]
@@ -184,9 +228,31 @@ export function loadStudent(student) {
     })
 }
 
-export function updateGroup(field, value) {
+export function updateGroup(group, field, value) {
     store.update((s) => {
-        s.selectedGroup.group[field] = value;
+        group[field] = value;
+        return s;
+    })
+}
+
+export function deleteGroup(group) {
+    store.update((s) => {
+        s.groups = s.groups.filter(g => g !== group);
+        return s;
+    })
+}
+
+export function updateStudent(student, field, value) {
+    store.update((s) => {
+        console.log(student)
+        student[field] = value;
+        return s;
+    })
+}
+
+export function deleteStudent(student) {
+    store.update((s) => {
+        data.students = data.students.filter(g => g !== student);
         return s;
     })
 }

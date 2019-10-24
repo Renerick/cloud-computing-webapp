@@ -9,8 +9,9 @@
     export let inputClass = "";
     export let label;
     export let labelClass = "";
-    export let containerClass ="";
+    export let outputClass = "";
     export let selectOptions;
+    export let alwaysActive = false;
 
     const inputTypeConts = inputType;
 
@@ -29,19 +30,19 @@
 {#if label}
     <label class={labelClass}>{label}</label>
 {/if}
-<div on:click={() => (editing = true)} class="{containerClass}">
-    {#if !editing}
-        <slot output={value} />
-    {:else}
+{#if !editing && !alwaysActive}
+    <p on:click={() => (editing = true)} class={outputClass}>{value}</p>
+{:else}
+    <div class={outputClass}>
         <Input
             bind:this={input}
-            classes={inputClass}
+            classes={inputType != 'checkbox' && inputType != 'radio' ? 'w-full h-full' : ''}
             on:blur={submit}
             on:keyup={e => {
                 if (e.key === 'Enter') input.blur();
             }}
             type={inputType}
             {selectOptions}
-            bind:value />
-    {/if}
-</div>
+            bind:value/>
+    </div>
+{/if}
