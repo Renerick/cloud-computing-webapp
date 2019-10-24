@@ -13,6 +13,8 @@
     export let selectOptions;
     export let alwaysActive = false;
 
+    export let renderer = (s) => s;
+
     const inputTypeConts = inputType;
 
     let input;
@@ -31,7 +33,7 @@
     <label class={labelClass}>{label}</label>
 {/if}
 {#if !editing && !alwaysActive}
-    <p on:click={() => (editing = true)} class={outputClass}>{value}</p>
+    <p on:click={() => (editing = true)} class={outputClass}>{renderer(value)}</p>
 {:else}
     <div class={outputClass}>
         <Input

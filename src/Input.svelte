@@ -312,7 +312,7 @@
         {disabled}
         bind:value>
         {#each selectOptions as option}
-            <option value={option}>{option}</option>
+            <option value={option.key}>{option.value}</option>
         {/each}
     </select>
 {/if}

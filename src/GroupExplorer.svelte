@@ -4,6 +4,12 @@
     import { cubicOut } from "svelte/easing";
 
     import { location, replace } from "svelte-spa-router";
+    import {
+        humanizeStudentType,
+        humanizeStudyingForm,
+        getStudyingFormTranslation,
+        getStudentTypeTranslation,
+    } from "./localization.js";
 
     import GroupListItem from "./GroupListItem.svelte";
     import StudentListItem from "./StudentListItem.svelte";
@@ -96,9 +102,10 @@
                                 on:submit={e => updateGroup($store.selectedGroup.group, 'studyingForm', e.detail)}
                                 let:output
                                 inputType="select"
-                                selectOptions={['fullTime', 'extramural']}
+                                selectOptions={[{ key: 'fullTime', value: 'Full time' }, { key: 'extramural', value: 'Extramural' }]}
                                 labelClass="table-cell text-right pr-4 font-bold
                                 border-b border-active"
+                                renderer={humanizeStudyingForm}
                                 label="Studying form"
                                 outputClass="table-cell hover:bg-active py-2
                                 px-4 cursor-pointer border-b border-active" />
@@ -169,10 +176,11 @@
                             value={$store.student.type}
                             on:submit={e => updateStudent($store.student, 'type', e.detail)}
                             inputType="select"
-                            selectOptions={['budget', 'commercial', 'targeted']}
+                            selectOptions={getStudentTypeTranslation()}
+                            renderer={humanizeStudentType}
                             labelClass="table-cell text-right pr-4 font-bold
                             border-b border-active"
-                            label="Studying form"
+                            label="Type"
                             outputClass="table-cell hover:bg-active py-2 px-4
                             cursor-pointer border-b border-active" />
                     </div>
