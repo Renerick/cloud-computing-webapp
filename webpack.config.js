@@ -31,6 +31,17 @@ module.exports = (env, argv) => ({
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     {
+                        loader: 'string-replace-loader',
+                        options: {
+                            multiple: [
+                                { search: '\/zondicons\/browser-window-add.svg', replace: '../src/svg/browser-window-new.svg', flags: 'g' },
+                                { search: 's-paper', replace: 'news-paper', flags: 'g' },
+                                { search: '\/zondicons\/star.svg', replace: '../src/svg/star-full.svg', flags: 'g' },
+                                { search: '\/zondicons', replace: '\.\.\/src\/svg', flags: 'g' }
+                            ]
+                        }
+                    },
+                    {
                         loader: 'postcss-loader',
                         options: {
                             config: {
@@ -41,6 +52,13 @@ module.exports = (env, argv) => ({
                         }
                     }
                 ]
+            },
+            {
+                test: /\.svg$/,
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'images'
+                }
             }
         ]
     },

@@ -28,7 +28,7 @@
             on:selected={e => loadStudents(e.detail)}
             itemsClass="border-b border-primary last:border-b-0">
             <div slot="item" let:item>
-                <GroupListItem group={item}/>
+                <GroupListItem group={item} />
             </div>
         </GroupExplorerList>
     </div>
@@ -43,18 +43,23 @@
                     array={$store.selectedGroup.students}
                     on:selected={e => loadStudent(e.detail)}>
                     <div slot="listHeader" let:obj class="p-2">
-                        <button
-                            on:click={() => store.set({
-                                    ...$store,
-                                    selectedGroup: null
-                                })}>
-                            Close
-                        </button>
-                        <HiddenEditor value={obj.name} let:output>
-                            <h2 class="text-3xl">{output}</h2>
-                        </HiddenEditor>
-
+                        <div class="flex items-center">
+                            <button
+                                on:click={() => store.set({
+                                        ...$store,
+                                        selectedGroup: null
+                                    })}
+                                class="mr-4">
+                                <i
+                                    class="text-4xl bg-primary-dark zi
+                                    zi-cheveron-left" />
+                            </button>
+                            <HiddenEditor value={obj.name} let:output>
+                                <h2 class="text-3xl">{output}</h2>
+                            </HiddenEditor>
+                        </div>
                     </div>
+
                     <div slot="item" let:item>{item.name}</div>
                 </GroupExplorerList>
             </div>
