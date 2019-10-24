@@ -244,7 +244,6 @@ export function deleteGroup(group) {
 
 export function updateStudent(student, field, value) {
     store.update((s) => {
-        console.log(student)
         student[field] = value;
         return s;
     })
