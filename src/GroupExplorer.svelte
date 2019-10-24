@@ -13,7 +13,8 @@
 
     import GroupListItem from "./GroupListItem.svelte";
     import StudentListItem from "./StudentListItem.svelte";
-    import EditGroup from "./EditGroup.svelte";
+    import PropertyGroup from "./PropertyGroup.svelte";
+    import PropertiesForm from "./PropertiesForm.svelte";
     import {
         store,
         loadGroups,
@@ -31,6 +32,55 @@
     $: loadGroups();
     $: loadStudents(params.group);
     $: loadStudent(params.student);
+
+    const groupParameters = [
+        {
+            key: "year",
+            inputType: "number",
+            label: "Year"
+        },
+        {
+            key: "studyingForm",
+            inputType: "select",
+            label: "Studying form",
+            renderer: humanizeStudyingForm,
+            getSelectOptions: getStudyingFormTranslation
+        }
+    ];
+
+    $: console.log(studentParameters[0]);
+    
+
+    const studentParameters = [
+        {
+            key: "group",
+            inputType: "select",
+            getSelectOptions: () => $store.groups.map(g => ({
+                key: g._id,
+                value: g.name
+            })),
+            renderer: s => $store.groups.find(g => g._id === s).name,
+            label: "Group"
+        },
+        {
+            key: "averageScore",
+            inputType: "number",
+            label: "Average score"
+        },
+        {
+            key: "type",
+            inputType: "select",
+            getSelectOptions: getStudentTypeTranslation,
+            renderer: humanizeStudentType,
+            label: "Type"
+        },
+        {
+            key: "academicalDebt",
+            inputType: "checkbox",
+            label: "Academical debt",
+            alwaysActive: true
+        }
+    ];
 </script>
 
 <style>
@@ -68,7 +118,7 @@
                                 class="text-4xl bg-primary-dark zi
                                 zi-cheveron-left" />
                         </a>
-                        <EditGroup
+                        <PropertyGroup
                             value={$store.selectedGroup.group.name}
                             on:submit={e => updateGroup($store.selectedGroup.group, 'name', e.detail)}
                             outputClass="w-full text-3xl hover:bg-active
@@ -84,33 +134,10 @@
                         </button>
                     </div>
 
-                    <div class="table w-full">
-                        <div class="table-row">
-                            <EditGroup
-                                value={$store.selectedGroup.group.year}
-                                on:submit={e => updateGroup($store.selectedGroup.group, 'year', e.detail)}
-                                inputType="number"
-                                labelClass="table-cell border-b border-active
-                                w-1/4 text-right pr-4 font-bold"
-                                label="Year"
-                                outputClass="table-cell border-b border-active
-                                hover:bg-active py-2 px-4 cursor-pointer" />
-                        </div>
-                        <div class="table-row">
-                            <EditGroup
-                                value={$store.selectedGroup.group.studyingForm}
-                                on:submit={e => updateGroup($store.selectedGroup.group, 'studyingForm', e.detail)}
-                                let:output
-                                inputType="select"
-                                selectOptions={[{ key: 'fullTime', value: 'Full time' }, { key: 'extramural', value: 'Extramural' }]}
-                                labelClass="table-cell text-right pr-4 font-bold
-                                border-b border-active"
-                                renderer={humanizeStudyingForm}
-                                label="Studying form"
-                                outputClass="table-cell hover:bg-active py-2
-                                px-4 cursor-pointer border-b border-active" />
-                        </div>
-                    </div>
+                    <PropertiesForm
+                        object={$store.selectedGroup.group}
+                        fieldsDescription={groupParameters}
+                        on:updated={e => updateGroup($store.selectedGroup.group, e.detail.key, e.detail.value)} />
                 </div>
                 {#if $store.selectedGroup.students}
                     <div class="flex justify-between align-middle mb-4">
@@ -118,7 +145,7 @@
                         <button
                             class="mr-8"
                             on:click={() => createStudent($store.selectedGroup.group._id)}>
-                            <i class="zi zi-add-outline bg-primary-dark" />
+                            <i class="zi zi-user-add bg-primary-dark" />
                         </button>
                     </div>
                     <ul class="overflow-y-auto h-full">
@@ -147,7 +174,7 @@
                         <i
                             class="text-4xl bg-primary-dark zi zi-cheveron-left" />
                     </a>
-                    <EditGroup
+                    <PropertyGroup
                         value={$store.student.name}
                         on:submit={e => updateStudent($store.student, 'name', e.detail)}
                         outputClass="w-full text-3xl"
@@ -163,63 +190,13 @@
                 </div>
                 <img
                     class="mx-auto"
-                    alt="Full size photo of {$store.student.avatar}"
+                    alt="Full size photo of {$store.student.name}"
                     src={$store.student.avatar} />
-                <div class="table w-full">
-                    <div class="table-row">
-                        <EditGroup
-                            value={$store.student.group}
-                            on:submit={e => updateStudent($store.student, 'group', e.detail)}
-                            inputType="select"
-                            selectOptions={$store.groups.map(g => ({
-                                key: g._id,
-                                value: g.name
-                            }))}
-                            labelClass="table-cell text-right pr-4 font-bold
-                            border-b border-active"
-                            label="Group"
-                            renderer={s => $store.groups.find(g => g._id === s).name}
-                            outputClass="table-cell hover:bg-active py-2 px-4
-                            cursor-pointer border-b border-active" />
-                    </div>
-                    <div class="table-row">
-                        <EditGroup
-                            value={$store.student.averageScore}
-                            on:submit={e => updateStudent($store.student, 'averageScore', e.detail)}
-                            let:output
-                            inputType="number"
-                            labelClass="table-cell border-b border-active w-1/4
-                            text-right pr-4 font-bold"
-                            label="Average score"
-                            outputClass="table-cell border-b border-active
-                            hover:bg-active py-2 px-4 cursor-pointer" />
-                    </div>
-                    <div class="table-row">
-                        <EditGroup
-                            value={$store.student.type}
-                            on:submit={e => updateStudent($store.student, 'type', e.detail)}
-                            inputType="select"
-                            selectOptions={getStudentTypeTranslation()}
-                            renderer={humanizeStudentType}
-                            labelClass="table-cell text-right pr-4 font-bold
-                            border-b border-active"
-                            label="Type"
-                            outputClass="table-cell hover:bg-active py-2 px-4
-                            cursor-pointer border-b border-active" />
-                    </div>
-                    <div class="table-row">
-                        <EditGroup
-                            value={$store.student.academicalDebt}
-                            on:submit={e => updateStudent($store.student, 'academicalDebt', e.detail)}
-                            inputType="checkbox"
-                            labelClass="table-cell text-right pr-4 font-bold
-                            border-b border-active"
-                            label="Academical debt"
-                            alwaysActive={true}
-                            outputClass="table-cell hover:bg-active py-2 px-4
-                            cursor-pointer border-b border-active" />
-                    </div>
-                </div>
+
+                <PropertiesForm
+                    object={$store.student}
+                    on:updated={e => updateStudent($store.student, e.detail.key, e.detail.value)}
+                    fieldsDescription={studentParameters} />
             </div>
         {/if}
     </div>

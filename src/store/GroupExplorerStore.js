@@ -249,6 +249,8 @@ export function loadStudent(student) {
 export function updateGroup(group, field, value) {
     store.update((s) => {
         group[field] = value;
+        console.log(group, field, value);
+        
         return s;
     })
 }
