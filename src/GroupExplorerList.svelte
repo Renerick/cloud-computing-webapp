@@ -7,14 +7,13 @@
     export let itemsClass;
 </script>
 
-
 <slot name="listHeader" obj={object} />
-<div class="overflow-y-auto h-full">
-    {#if array}
+{#if array}
+    <ul class="overflow-y-auto h-full">
         {#each array as item (item._id)}
-            <div on:click={() => dispatch('selected', item)} class={itemsClass}>
+            <li on:click={() => dispatch('selected', item)} class={itemsClass}>
                 <slot name="item" {item} />
-            </div>
+            </li>
         {/each}
-    {/if}
-</div>
+    </ul>
+{/if}

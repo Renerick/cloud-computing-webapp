@@ -33,7 +33,8 @@
         </GroupExplorerList>
     </div>
     <div
-        class="tr-list absolute md:static w-full md:w-4/12 lg:w-2/5 h-full bg-white {$store.selectedGroup ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
+        class="tr-list absolute md:static w-full md:w-4/12 lg:w-2/5 h-full
+        bg-white {$store.selectedGroup ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
         md:opacity-100 border-l border-primary-dark">
         {#if $store.selectedGroup}
             <div
@@ -66,7 +67,8 @@
         {/if}
     </div>
     <div
-        class="tr-list absolute md:static w-full md:w-5/12 lg:w-2/5 h-full bg-white border-l border-primary-dark {$store.student ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
+        class="tr-list absolute md:static w-full md:w-5/12 lg:w-2/5 h-full
+        bg-white border-l border-primary-dark {$store.student ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
         md:opacity-100">
         {#if $store.student}
             <div

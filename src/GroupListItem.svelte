@@ -1,6 +1,5 @@
 <script>
     export let group;
-    console.log(group);
 </script>
 
 <div class="p-4 hover:bg-active cursor-pointer border-l-2 border-primary-dark {group.active ? 'bg-active' : 'bg-white'}">
