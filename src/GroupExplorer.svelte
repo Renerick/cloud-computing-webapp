@@ -28,10 +28,7 @@
 
     export let params;
 
-    onMount(() => loadGroups());
-
-    $: console.log($store);
-
+    $: loadGroups();
     $: loadStudents(params.group);
     $: loadStudent(params.student);
 </script>
@@ -92,7 +89,6 @@
                             <EditGroup
                                 value={$store.selectedGroup.group.year}
                                 on:submit={e => updateGroup($store.selectedGroup.group, 'year', e.detail)}
-                                let:output
                                 inputType="number"
                                 labelClass="table-cell border-b border-active
                                 w-1/4 text-right pr-4 font-bold"
@@ -117,9 +113,13 @@
                     </div>
                 </div>
                 {#if $store.selectedGroup.students}
-                    <div class="flex justify-between align-middle  mb-4">
+                    <div class="flex justify-between align-middle mb-4">
                         <h3 class="text-2xl">Students</h3>
-                        <button class="mr-8" on:click={() => createStudent($store.selectedGroup.group._id)}><i class="zi zi-add-outline bg-primary-dark"></i></button>
+                        <button
+                            class="mr-8"
+                            on:click={() => createStudent($store.selectedGroup.group._id)}>
+                            <i class="zi zi-add-outline bg-primary-dark" />
+                        </button>
                     </div>
                     <ul class="overflow-y-auto h-full">
                         {#each $store.selectedGroup.students as item (item._id)}
@@ -166,6 +166,22 @@
                     alt="Full size photo of {$store.student.avatar}"
                     src={$store.student.avatar} />
                 <div class="table w-full">
+                    <div class="table-row">
+                        <EditGroup
+                            value={$store.student.group}
+                            on:submit={e => updateStudent($store.student, 'group', e.detail)}
+                            inputType="select"
+                            selectOptions={$store.groups.map(g => ({
+                                key: g._id,
+                                value: g.name
+                            }))}
+                            labelClass="table-cell text-right pr-4 font-bold
+                            border-b border-active"
+                            label="Group"
+                            renderer={s => $store.groups.find(g => g._id === s).name}
+                            outputClass="table-cell hover:bg-active py-2 px-4
+                            cursor-pointer border-b border-active" />
+                    </div>
                     <div class="table-row">
                         <EditGroup
                             value={$store.student.averageScore}

@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { location, replace } from "svelte-spa-router";
 
 const data = {
     groups: [
@@ -100,95 +101,95 @@ const data = {
         },
     ],
     students: [
-        // {
-        //     _id: "St-1-1",
-        //     name: "Student 1-1",
-        //     avatar: "https://i.pravatar.cc/400?img=12",
-        //     // [budget, commercial, targeted]
-        //     type: 'budget',
-        //     averageScore: 5,
-        //     academicalDebt: false,
-        //     group: "1"
-        // },
-        // {
-        //     _id: "St-1-2",
-        //     name: "Student 1-2",
-        //     avatar: "https://i.pravatar.cc/400?img=40",
-        //     // [budget, commercial, targeted]
-        //     type: 'budget',
-        //     averageScore: 5,
-        //     academicalDebt: false,
-        //     group: "1"
-        // },
-        // {
-        //     _id: "St-1-3",
-        //     name: "Student 1-3",
-        //     avatar: "https://i.pravatar.cc/400?img=1",
-        //     // [budget, commercial, targeted]
-        //     type: 'budget',
-        //     averageScore: 5,
-        //     academicalDebt: false,
-        //     group: "1"
-        // },
-        // {
-        //     _id: "St-2-1",
-        //     name: "Student 2-1",
-        //     avatar: "https://i.pravatar.cc/400?img=51",
-        //     // [budget, commercial, targeted]
-        //     type: 'budget',
-        //     averageScore: 5,
-        //     academicalDebt: false,
-        //     group: "2"
-        // },
-        // {
-        //     _id: "St-2-3",
-        //     name: "Student 2-3",
-        //     // [budget, commercial, targeted]
-        //     type: 'budget',
-        //     averageScore: 5,
-        //     academicalDebt: false,
-        //     group: "2"
-        // },
-        // {
-        //     _id: "St-2-2",
-        //     name: "Student 2-2",
-        //     avatar: "https://i.pravatar.cc/400?img=59",
-        //     // [budget, commercial, targeted]
-        //     type: 'budget',
-        //     averageScore: 5,
-        //     academicalDebt: false,
-        //     group: "2"
-        // },
-        // {
-        //     _id: "St-3-1",
-        //     name: "Student 3-1",
-        //     avatar: "https://i.pravatar.cc/400?img=60",
-        //     // [budget, commercial, targeted]
-        //     type: 'budget',
-        //     averageScore: 5,
-        //     academicalDebt: false,
-        //     group: "3"
-        // },
-        // {
-        //     _id: "St-3-2",
-        //     name: "Student 3-2",
-        //     avatar: "https://i.pravatar.cc/400?img=68",
-        //     // [budget, commercial, targeted]
-        //     type: 'budget',
-        //     averageScore: 5,
-        //     academicalDebt: true,
-        //     group: "3"
-        // },
-        // {
-        //     _id: "St-3-3",
-        //     name: "Student 3-3",
-        //     avatar: "https://i.pravatar.cc/400?img=57",
-        //     // [budget, commercial, targeted]
-        //     type: 'budget',
-        //     averageScore: 5,
-        //     academicalDebt: false,
-        //     group: "3"
-        // },
+        {
+            _id: "St-1-1",
+            name: "Student 1-1",
+            avatar: "https://i.pravatar.cc/400?img=12",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
+            group: "1"
+        },
+        {
+            _id: "St-1-2",
+            name: "Student 1-2",
+            avatar: "https://i.pravatar.cc/400?img=40",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
+            group: "1"
+        },
+        {
+            _id: "St-1-3",
+            name: "Student 1-3",
+            avatar: "https://i.pravatar.cc/400?img=1",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
+            group: "1"
+        },
+        {
+            _id: "St-2-1",
+            name: "Student 2-1",
+            avatar: "https://i.pravatar.cc/400?img=51",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
+            group: "2"
+        },
+        {
+            _id: "St-2-3",
+            name: "Student 2-3",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
+            group: "2"
+        },
+        {
+            _id: "St-2-2",
+            name: "Student 2-2",
+            avatar: "https://i.pravatar.cc/400?img=59",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
+            group: "2"
+        },
+        {
+            _id: "St-3-1",
+            name: "Student 3-1",
+            avatar: "https://i.pravatar.cc/400?img=60",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
+            group: "3"
+        },
+        {
+            _id: "St-3-2",
+            name: "Student 3-2",
+            avatar: "https://i.pravatar.cc/400?img=68",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: true,
+            group: "3"
+        },
+        {
+            _id: "St-3-3",
+            name: "Student 3-3",
+            avatar: "https://i.pravatar.cc/400?img=57",
+            // [budget, commercial, targeted]
+            type: 'budget',
+            averageScore: 5,
+            academicalDebt: false,
+            group: "3"
+        },
     ]
 }
 
@@ -262,6 +263,12 @@ export function deleteGroup(group) {
 export function updateStudent(student, field, value) {
     store.update((s) => {
         student[field] = value;
+        console.log(s);
+        if (field === "group")
+            replace("/explore/" + value + "/" + student._id)
+            s.selectedGroup = {
+                ...s.selectedGroup, students: data.students.filter(s => s.group === s.selectedGroup.group._id)
+            };
         return s;
     })
 }
