@@ -29,6 +29,7 @@
     "cssnano": "^4.1.10"
   },
   "dependencies": {
+    "svelte-spa-router": "^1.2.1",
     "tailwindcss": "^1.1.2",
     "zondicons-css": "1.0.3"
   }

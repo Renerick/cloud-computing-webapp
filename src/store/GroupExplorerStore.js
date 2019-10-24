@@ -165,18 +165,22 @@ export function loadGroups() {
 
 export function loadStudents(group) {
     store.update((s) => {
-        s.selectedGroup = {
-            group: group,
-            students: data.students.filter(s => s.group === group._id)
-        };
-        s.groups = s.groups.map(g => ({...g, active: g === s.selectedGroup.group}))
+        if (!group) {
+            s.selectedGroup = null
+        } else {
+            s.selectedGroup = {
+                group: data.groups.find(g => g._id == group),
+                students: data.students.filter(s => s.group === group)
+            };
+            s.groups = s.groups.map(g => ({ ...g, active: g._id === s.selectedGroup.group._id }))
+        }
         return s;
     })
 }
 
 export function loadStudent(student) {
     store.update((s) => {
-        s.student = student;
+        s.student = data.students.find(s => s._id == student);
         return s;
     })
 }

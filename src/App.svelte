@@ -1,6 +1,12 @@
 <script>
     import Nav from "./Nav.svelte";
     import GroupExplorer from "./GroupExplorer.svelte";
+    import Router from "svelte-spa-router";
+
+    const routes = {
+        "/explore": GroupExplorer,
+        "/explore/:group/:student?": GroupExplorer
+    };
 </script>
 
 <style>
@@ -12,6 +18,6 @@
         <Nav />
     </div>
     <div class="h-full">
-        <GroupExplorer />
+        <Router {routes} />
     </div>
 </div>
