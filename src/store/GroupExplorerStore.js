@@ -172,7 +172,6 @@ export function loadStudents(group) {
                 group: data.groups.find(g => g._id == group),
                 students: data.students.filter(s => s.group === group)
             };
-            s.groups = s.groups.map(g => ({ ...g, active: g._id === s.selectedGroup.group._id }))
         }
         return s;
     })
@@ -181,6 +180,13 @@ export function loadStudents(group) {
 export function loadStudent(student) {
     store.update((s) => {
         s.student = data.students.find(s => s._id == student);
+        return s;
+    })
+}
+
+export function updateGroup(field, value) {
+    store.update((s) => {
+        s.selectedGroup.group[field] = value;
         return s;
     })
 }
