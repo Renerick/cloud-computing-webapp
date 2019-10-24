@@ -8,7 +8,7 @@
         humanizeStudentType,
         humanizeStudyingForm,
         getStudyingFormTranslation,
-        getStudentTypeTranslation,
+        getStudentTypeTranslation
     } from "./localization.js";
 
     import GroupListItem from "./GroupListItem.svelte";
@@ -19,6 +19,7 @@
         loadGroups,
         loadStudents,
         loadStudent,
+        createStudent,
         updateGroup,
         deleteGroup,
         updateStudent,
@@ -28,6 +29,8 @@
     export let params;
 
     onMount(() => loadGroups());
+
+    $: console.log($store);
 
     $: loadStudents(params.group);
     $: loadStudent(params.student);
@@ -71,7 +74,8 @@
                         <EditGroup
                             value={$store.selectedGroup.group.name}
                             on:submit={e => updateGroup($store.selectedGroup.group, 'name', e.detail)}
-                            outputClass="w-full text-3xl"
+                            outputClass="w-full text-3xl hover:bg-active
+                            cursor-pointer"
                             let:output />
                         <button
                             on:click={() => {
@@ -113,7 +117,10 @@
                     </div>
                 </div>
                 {#if $store.selectedGroup.students}
-                    <h3 class="text-2xl mb-4">Students</h3>
+                    <div class="flex justify-between align-middle  mb-4">
+                        <h3 class="text-2xl">Students</h3>
+                        <button class="mr-8" on:click={() => createStudent($store.selectedGroup.group._id)}><i class="zi zi-add-outline bg-primary-dark"></i></button>
+                    </div>
                     <ul class="overflow-y-auto h-full">
                         {#each $store.selectedGroup.students as item (item._id)}
                             <li class="border-b border-primary last:border-b-0">
