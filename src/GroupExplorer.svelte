@@ -39,16 +39,16 @@
     </div>
 
     <div
-        class="tr-list absolute md:static w-full md:w-4/12 lg:w-2/5 h-full
+        class="tr-list absolute md:static w-full md:w-4/12 lg:w-2/5
         bg-white {$store.selectedGroup ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
-        md:opacity-100 border-l border-primary">
+        md:opacity-100 border-l border-primary overflow-y-auto">
 
         <GroupExplorerGroupInfo />
     </div>
     <div
-        class="tr-list absolute md:static w-full md:w-5/12 lg:w-2/5 h-full
+        class="tr-list absolute md:static w-full md:w-5/12 lg:w-2/5
         bg-white border-l border-primary {$store.student ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
-        md:opacity-100">
+        md:opacity-100 overflow-y-auto">
 
         <GroupExplorerStudentInfo />
     </div>

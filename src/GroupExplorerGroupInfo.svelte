@@ -80,7 +80,7 @@
                     <i class="zi zi-user-add bg-primary-dark" />
                 </button>
             </div>
-            <ul class="overflow-y-auto h-full">
+            <ul>
                 {#each $store.selectedGroup.students as item (item._id)}
                     <li class="border-b border-primary last:border-b-0">
                         <a
