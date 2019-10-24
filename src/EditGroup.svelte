@@ -19,7 +19,7 @@
 
     let editing = false;
 
-    $: if (input) input.focus();
+    $: if (!alwaysActive && input) input.focus();
 
     function submit() {
         editing = false;

@@ -160,7 +160,7 @@
                             inputType="number"
                             labelClass="table-cell border-b border-active w-1/4
                             text-right pr-4 font-bold"
-                            label="AverageScore"
+                            label="Average score"
                             outputClass="table-cell border-b border-active
                             hover:bg-active py-2 px-4 cursor-pointer" />
                     </div>
@@ -168,7 +168,6 @@
                         <EditGroup
                             value={$store.student.type}
                             on:submit={e => updateStudent($store.student, 'type', e.detail)}
-                            let:output
                             inputType="select"
                             selectOptions={['budget', 'commercial', 'targeted']}
                             labelClass="table-cell text-right pr-4 font-bold
@@ -181,13 +180,11 @@
                         <EditGroup
                             value={$store.student.academicalDebt}
                             on:submit={e => updateStudent($store.student, 'academicalDebt', e.detail)}
-                            let:output
                             inputType="checkbox"
-                            alwaysActive={true}
-                            selectOptions={['budget', 'commercial', 'targeted']}
                             labelClass="table-cell text-right pr-4 font-bold
                             border-b border-active"
                             label="Academical debt"
+                            alwaysActive={true}
                             outputClass="table-cell hover:bg-active py-2 px-4
                             cursor-pointer border-b border-active" />
                     </div>
