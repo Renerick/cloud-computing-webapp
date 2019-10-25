@@ -41,14 +41,14 @@
     <div
         class="tr-list absolute md:static w-full md:w-4/12 lg:w-2/5
         bg-white {$store.selectedGroup ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
-        md:opacity-100 border-l border-primary overflow-y-auto h-full">
+        md:opacity-100 border-l border-primary overflow-y-auto overflow-x-hidden h-full">
 
         <GroupExplorerGroupInfo />
     </div>
     <div
         class="tr-list absolute md:static w-full md:w-5/12 lg:w-2/5
         bg-white border-l border-primary {$store.student ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
-        md:opacity-100 overflow-y-auto h-full">
+        md:opacity-100 overflow-y-auto overflow-x-hidden h-full">
 
         <GroupExplorerStudentInfo />
     </div>

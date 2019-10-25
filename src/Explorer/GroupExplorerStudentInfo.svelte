@@ -12,6 +12,7 @@
 
     import PropertyGroup from "./PropertyGroup.svelte";
     import PropertiesForm from "./PropertiesForm.svelte";
+    import Popover from "../Popover/Popover.svelte";
 
     import {
         store,
@@ -71,14 +72,22 @@
                 on:submit={e => updateStudent($store.student, 'name', e.detail)}
                 outputClass="w-full text-3xl"
                 let:output />
-            <button
-                on:click={() => {
-                    deleteStudent($store.student);
-                    replace('/explore/' + $store.selectedGroup.group._id);
-                }}
-                class="mr-8">
-                <i class="text-xl bg-primary-dark zi zi-trash" />
-            </button>
+            <Popover arrow={false} placement="left-start">
+                <button slot="target" class="mr-8">
+                    <i class="text-xl bg-primary-dark zi zi-trash" />
+                </button>
+                <div class="bg-white p-4 w-64 text-center" slot="content">
+                    <p class="mb-4">This action cannot be undone!</p>
+                    <button
+                        class="bg-primary text-white py-2 px-4"
+                        on:click={() => {
+                            deleteStudent($store.student);
+                            replace('/explore/' + $store.selectedGroup.group._id);
+                        }}>
+                        Delete student {$store.student.name} anyway?
+                    </button>
+                </div>
+            </Popover>F
         </div>
         <img
             class="mx-auto"

@@ -27,6 +27,5 @@
                 outputClass="table-cell hover:bg-active py-2 px-4 cursor-pointer
                 border-b border-active" />
         </div>
-        <!-- content here -->
     {/each}
 </div>

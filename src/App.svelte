@@ -10,7 +10,7 @@
         "/explore": GroupExplorer,
         "/explore/:group/:student?": GroupExplorer,
         "/groups": GroupsAggregation,
-        "/students": StudentsAggregation,
+        "/students": StudentsAggregation
     };
 
     if ($location == "/") replace("/explore");
