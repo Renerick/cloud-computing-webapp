@@ -73,9 +73,9 @@
                 outputClass="w-full text-3xl"
                 let:output />
             <Popover arrow={false} placement="left-start">
-                <button slot="target" class="mr-8">
+                <div slot="target" class="mr-8 cursor-pointer">
                     <i class="text-xl bg-primary-dark zi zi-trash" />
-                </button>
+                </div>
                 <div class="bg-white p-4 w-64 text-center" slot="content">
                     <p class="mb-4">This action cannot be undone!</p>
                     <button
@@ -87,7 +87,7 @@
                         Delete student {$store.student.name} anyway?
                     </button>
                 </div>
-            </Popover>F
+            </Popover>
         </div>
         <img
             class="mx-auto"
