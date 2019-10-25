@@ -14,32 +14,34 @@
             <th class="px-2 py-1 sm:px-8 sm:py-4">Group</th>
             <th class="px-2 py-1 sm:px-8 sm:py-4">Year</th>
         </tr>
-        {#each $store.students as student}
-            <tr class="border-b border-primary last:border-b-0">
-                <td class=" px-2 py-1 sm:px-8 sm:py-4">
-                    <a
-                        class="text-primary-dark hover:underline"
-                        href="/#/explore/{student.group}/{student._id}">
-                        {student.name}
-                    </a>
-                </td>
-                <td class="px-2 py-1 sm:px-8 sm:py-4">
-                    {humanizeStudentType(student.type)}
-                </td>
-                <td class="px-2 py-1 sm:px-8 sm:py-4">
-                    {student.averageScore}
-                </td>
-                <td class="px-2 py-1 sm:px-8 sm:py-4">
-                    <a
-                        class="text-primary-dark hover:underline"
-                        href="/#/explore/{student.groupObj._id}">
-                        {student.groupObj.name}
-                    </a>
-                </td>
-                <td class="px-2 py-1 sm:px-8 sm:py-4">
-                    {student.groupObj.year}
-                </td>
-            </tr>
-        {/each}
+        <tbody class="bg-white">
+            {#each $store.students as student}
+                <tr class="border-b border-primary last:border-b-0">
+                    <td class=" px-2 py-1 sm:px-8 sm:py-4">
+                        <a
+                            class="text-primary-dark hover:underline"
+                            href="/#/explore/{student.group}/{student._id}">
+                            {student.name}
+                        </a>
+                    </td>
+                    <td class="px-2 py-1 sm:px-8 sm:py-4">
+                        {humanizeStudentType(student.type)}
+                    </td>
+                    <td class="px-2 py-1 sm:px-8 sm:py-4">
+                        {student.averageScore}
+                    </td>
+                    <td class="px-2 py-1 sm:px-8 sm:py-4">
+                        <a
+                            class="text-primary-dark hover:underline"
+                            href="/#/explore/{student.groupObj._id}">
+                            {student.groupObj.name}
+                        </a>
+                    </td>
+                    <td class="px-2 py-1 sm:px-8 sm:py-4">
+                        {student.groupObj.year}
+                    </td>
+                </tr>
+            {/each}
+        </tbody>
     </table>
 </div>
