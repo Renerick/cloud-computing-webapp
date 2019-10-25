@@ -65,7 +65,7 @@ export function updateGroup(group, field, value) {
 
 export function deleteGroup(group) {
     store.update((s) => {
-        s.groups = s.groups.filter(g => g !== group);
+        data.groups = data.groups.filter(g => g !== group);
         return s;
     })
 }
