@@ -1,6 +1,6 @@
 <script>
     import { createEventDispatcher, onMount } from "svelte";
-    import Input from "./Input.svelte";
+    import Input from "../Input.svelte";
 
     let dispatch = createEventDispatcher();
 

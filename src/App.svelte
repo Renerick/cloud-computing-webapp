@@ -1,6 +1,6 @@
 <script>
     import Nav from "./Nav.svelte";
-    import GroupExplorer from "./GroupExplorer.svelte";
+    import GroupExplorer from "./Explorer/GroupExplorer.svelte";
     import GroupsAggregation from "./GroupsAggregation.svelte";
     import StudentsAggregation from "./StudentsAggregation.svelte";
     import Router from "svelte-spa-router";

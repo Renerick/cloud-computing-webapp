@@ -8,7 +8,7 @@
         humanizeStudyingForm,
         getStudyingFormTranslation,
         getStudentTypeTranslation
-    } from "./localization.js";
+    } from "../localization.js";
 
     import StudentListItem from "./StudentListItem.svelte";
     import PropertyGroup from "./PropertyGroup.svelte";
@@ -24,7 +24,7 @@
         deleteGroup,
         updateStudent,
         deleteStudent
-    } from "./store/GroupExplorerStore.js";
+    } from "../store/GroupExplorerStore.js";
 
     const groupParameters = [
         {

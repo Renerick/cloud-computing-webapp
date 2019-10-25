@@ -5,7 +5,7 @@
         humanizeStudyingForm,
         getStudyingFormTranslation,
         getStudentTypeTranslation
-    } from "./localization.js";
+    } from "../localization.js";
 
     import GroupExplorerGroupList from "./GroupExplorerGroupList.svelte";
     import GroupExplorerGroupInfo from "./GroupExplorerGroupInfo.svelte";
@@ -15,7 +15,7 @@
         loadGroups,
         loadStudents,
         loadStudent
-    } from "./store/GroupExplorerStore.js";
+    } from "../store/GroupExplorerStore.js";
 
     export let params;
 

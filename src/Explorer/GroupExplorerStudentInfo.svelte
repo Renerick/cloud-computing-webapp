@@ -8,7 +8,7 @@
         humanizeStudyingForm,
         getStudyingFormTranslation,
         getStudentTypeTranslation
-    } from "./localization.js";
+    } from "../localization.js";
 
     import PropertyGroup from "./PropertyGroup.svelte";
     import PropertiesForm from "./PropertiesForm.svelte";
@@ -23,7 +23,7 @@
         deleteGroup,
         updateStudent,
         deleteStudent
-    } from "./store/GroupExplorerStore.js";
+    } from "../store/GroupExplorerStore.js";
 
     const studentParameters = [
         {

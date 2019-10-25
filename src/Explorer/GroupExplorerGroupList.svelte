@@ -1,6 +1,6 @@
 <script>
     import GroupListItem from "./GroupListItem.svelte";
-   
+
     import {
         store,
         loadGroups,
@@ -11,7 +11,7 @@
         deleteGroup,
         updateStudent,
         deleteStudent
-    } from "./store/GroupExplorerStore.js";
+    } from "../store/GroupExplorerStore.js";
 </script>
 
 <ul>
