@@ -70,7 +70,7 @@
             <PropertyGroup
                 value={$store.student.name}
                 on:submit={e => updateStudent($store.student, 'name', e.detail)}
-                outputClass="w-full text-3xl"
+                outputClass="w-full text-3xl h-12 hover:bg-active cursor-pointer"
                 let:output />
             <Popover arrow={false} placement="left-start" preventDefault={true}>
                 <div slot="target" class="mr-8 cursor-pointer">

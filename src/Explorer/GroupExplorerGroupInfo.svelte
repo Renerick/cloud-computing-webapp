@@ -55,7 +55,7 @@
                 <PropertyGroup
                     value={$store.selectedGroup.group.name}
                     on:submit={e => updateGroup($store.selectedGroup.group, 'name', e.detail)}
-                    outputClass="w-full text-3xl hover:bg-active cursor-pointer"
+                    outputClass="w-full text-3xl hover:bg-active cursor-pointer h-12"
                     let:output />
                 <Popover arrow={false} placement="left-start" preventDefault={true}>
                     <div slot="target" class="mr-8 cursor-pointer">

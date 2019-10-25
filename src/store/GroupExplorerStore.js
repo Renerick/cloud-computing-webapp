@@ -36,10 +36,10 @@ export function createStudent(groupId) {
     store.update((s) => {
         data.students.push({
             _id: Math.random() + '',
-            name: "Student 1-1",
-            avatar: "https://i.pravatar.cc/400?img=12",
+            name: "",
+            avatar: "",
             type: 'budget',
-            averageScore: 5,
+            averageScore: 0,
             academicalDebt: false,
             group: groupId
         });
@@ -68,6 +68,21 @@ export function deleteGroup(group) {
         data.groups = data.groups.filter(g => g !== group);
         return s;
     })
+}
+
+export function createGroup() {
+    var id = Math.random() + '';
+    store.update((s) => {
+        data.groups = [...data.groups, {
+            _id: id,
+            name: "",
+            studyingForm: "fullTime",
+            year: 1
+        }];
+        s.groups = data.groups;
+        return s;
+    });
+    return id;
 }
 
 export function updateStudent(student, field, value) {

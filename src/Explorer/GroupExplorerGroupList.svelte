@@ -1,5 +1,6 @@
 <script>
     import GroupListItem from "./GroupListItem.svelte";
+    import { location, replace } from "svelte-spa-router";
 
     import {
         store,
@@ -7,13 +8,21 @@
         loadStudents,
         loadStudent,
         createStudent,
+        createGroup,
         updateGroup,
-        deleteGroup,
-        updateStudent,
-        deleteStudent
+        deleteGroup
     } from "../store/GroupExplorerStore.js";
 </script>
 
+<div class="flex justify-end items-center bg-white p-4">
+    <button
+        on:click={() => {
+            var id = createGroup();
+            replace('/explore/' + id);
+        }}>
+        <i class="zi zi-add-outline bg-primary-dark" />
+    </button>
+</div>
 <ul>
     {#each $store.groups as item (item._id)}
         <li class="border-b border-primary last:border-b-0">
