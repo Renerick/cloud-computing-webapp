@@ -48,7 +48,7 @@
     <div
         class="tr-list absolute md:static w-full md:w-5/12 lg:w-2/5
         bg-white border-l border-primary {$store.student ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
-        md:opacity-100 overflow-y-auto f-hull">
+        md:opacity-100 overflow-y-auto h-full">
 
         <GroupExplorerStudentInfo />
     </div>
