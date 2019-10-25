@@ -2,6 +2,7 @@
     import Nav from "./Nav.svelte";
     import GroupExplorer from "./GroupExplorer.svelte";
     import GroupsAggregation from "./GroupsAggregation.svelte";
+    import StudentsAggregation from "./StudentsAggregation.svelte";
     import Router from "svelte-spa-router";
     import { location, replace } from "svelte-spa-router";
 
@@ -9,6 +10,7 @@
         "/explore": GroupExplorer,
         "/explore/:group/:student?": GroupExplorer,
         "/groups": GroupsAggregation,
+        "/students": StudentsAggregation,
     };
 
     if ($location == "/") replace("/explore");
