@@ -72,7 +72,7 @@
                 on:submit={e => updateStudent($store.student, 'name', e.detail)}
                 outputClass="w-full text-3xl"
                 let:output />
-            <Popover arrow={false} placement="left-start">
+            <Popover arrow={false} placement="left-start" preventDefault={true}>
                 <div slot="target" class="mr-8 cursor-pointer">
                     <i class="text-xl bg-primary-dark zi zi-trash" />
                 </div>
