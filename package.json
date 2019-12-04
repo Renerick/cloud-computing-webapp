@@ -31,6 +31,7 @@
   "dependencies": {
     "svelte-spa-router": "^1.2.1",
     "tailwindcss": "^1.1.2",
-    "zondicons-css": "1.0.3"
+    "zondicons-css": "1.0.3",
+    "ky": "0.16.1"
   }
 }
