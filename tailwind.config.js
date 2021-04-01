@@ -1,6 +1,15 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+const production = !process.env.ROLLUP_WATCH;
+
 module.exports = {
+  purge: {
+    enabled: production,
+    content: [
+      './**/*.html',
+      './**/*.svelte',
+    ],
+  },
   theme: {
     fontFamily: {
       'primary': ['"Source Sans Pro"', ...defaultTheme.fontFamily.sans]

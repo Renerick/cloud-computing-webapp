@@ -297,7 +297,7 @@
         on:input
         bind:value
         {name}
-        {disabled} />
+        {disabled}></textarea>
 {:else if tag === 'select'}
 
     <select
