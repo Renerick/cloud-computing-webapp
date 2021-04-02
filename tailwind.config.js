@@ -12,7 +12,7 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      'primary': ['"Source Sans Pro"', ...defaultTheme.fontFamily.sans]
+      'primary': ['"Inter var"', ...defaultTheme.fontFamily.sans]
     },
     colors: {
       'primary': "#2589BD",
@@ -23,10 +23,6 @@ module.exports = {
       'active': "#E7ECF0"
     },
     extend: {
-      maxWidth: {
-        '1/5': '20%',
-        '2/5': '40%',
-      },
       inset: {
         '-full': '-100%'
       }

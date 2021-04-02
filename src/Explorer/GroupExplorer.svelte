@@ -20,8 +20,8 @@
     export let params;
 
     $: loadGroups();
-    $: loadStudents(params.group);
-    $: loadStudent(params.student);
+    $: loadStudents(params?.group);
+    $: loadStudent(params?.student);
 </script>
 
 <style>
@@ -33,20 +33,19 @@
 <div class="h-full w-full overflow-hidden relative md:flex">
 
     <div
-        class="absolute md:static w-full md:w-3/12 lg:w-1/5 h-full
+        class="absolute md:static w-full md:w-3/12 h-full
         overflow-y-auto">
         <GroupExplorerGroupList />
     </div>
 
     <div
-        class="tr-list absolute md:static w-full md:w-4/12 lg:w-2/5
-        bg-white {$store.selectedGroup ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
+        class="tr-list absolute md:static w-full md:w-4/12 bg-white {$store.selectedGroup ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
         md:opacity-100 border-l border-primary overflow-y-auto overflow-x-hidden h-full">
 
         <GroupExplorerGroupInfo />
     </div>
     <div
-        class="tr-list absolute md:static w-full md:w-5/12 lg:w-2/5
+        class="tr-list absolute md:static w-full md:w-5/12
         bg-white border-l border-primary {$store.student ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
         md:opacity-100 overflow-y-auto overflow-x-hidden h-full">
 

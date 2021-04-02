@@ -65,7 +65,9 @@
         transition:fly={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}>
         <div class="flex items-center mb-2">
             <a href="#/explore/{$store.selectedGroup.group._id}" class="mr-4">
-                <i class="text-4xl bg-primary-dark zi zi-cheveron-left" />
+                <svg class="text-primary-dark w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
             </a>
             <PropertyGroup
                 value={$store.student.name}
@@ -74,7 +76,9 @@
                 let:output />
             <Popover arrow={false} placement="left-start" preventDefault={true}>
                 <div slot="target" class="mr-8 cursor-pointer">
-                    <i class="text-xl bg-primary-dark zi zi-trash" />
+                    <svg class="text-primary-dark w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
                 </div>
                 <div class="bg-white p-4 w-64 text-center" slot="content">
                     <p class="mb-4">This action cannot be undone!</p>
