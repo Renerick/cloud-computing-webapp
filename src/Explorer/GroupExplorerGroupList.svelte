@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import GroupListItem from "./GroupListItem.svelte";
     import { location, replace } from "svelte-spa-router";
 
@@ -11,7 +11,7 @@
         createGroup,
         updateGroup,
         deleteGroup
-    } from "../store/GroupExplorerStore.js";
+    } from "../store/GroupExplorerStore.ts";
 </script>
 
 <div class="flex justify-end items-center bg-white p-4">

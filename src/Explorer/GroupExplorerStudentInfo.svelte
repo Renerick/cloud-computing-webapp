@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { location, replace } from "svelte-spa-router";
     import { fly } from "svelte/transition";
     import { cubicOut } from "svelte/easing";
@@ -8,7 +8,7 @@
         humanizeStudyingForm,
         getStudyingFormTranslation,
         getStudentTypeTranslation
-    } from "../localization.js";
+    } from "../localization.ts";
 
     import PropertyGroup from "./PropertyGroup.svelte";
     import PropertiesForm from "./PropertiesForm.svelte";
@@ -24,7 +24,7 @@
         deleteGroup,
         updateStudent,
         deleteStudent
-    } from "../store/GroupExplorerStore.js";
+    } from "../store/GroupExplorerStore.ts";
 
     const studentParameters = [
         {

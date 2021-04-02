@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
     import { location, replace } from "svelte-spa-router";
     import {
         humanizeStudentType,
         humanizeStudyingForm,
         getStudyingFormTranslation,
         getStudentTypeTranslation
-    } from "../localization.js";
+    } from "../localization.ts";
 
     import GroupExplorerGroupList from "./GroupExplorerGroupList.svelte";
     import GroupExplorerGroupInfo from "./GroupExplorerGroupInfo.svelte";
@@ -15,7 +15,7 @@
         loadGroups,
         loadStudents,
         loadStudent
-    } from "../store/GroupExplorerStore.js";
+    } from "../store/GroupExplorerStore.ts";
 
     export let params;
 

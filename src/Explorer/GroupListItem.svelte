@@ -1,5 +1,5 @@
-<script>
-    import { humanizeStudyingForm } from "../localization.js";
+<script lang="ts">
+    import { humanizeStudyingForm } from "../localization.ts";
 
     export let group;
     export let active;

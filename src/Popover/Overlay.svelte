@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     export let zIndex;
     export let action;
     export let overlayColor = "rgba(0,0,0,0.5)";

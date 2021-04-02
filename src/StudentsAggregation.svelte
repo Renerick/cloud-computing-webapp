@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
     import { store, loadStudents } from "./store/StudentsAggregateStore.js";
     import { onMount } from "svelte";
-    import { humanizeStudentType } from "./localization.js";
+    import { humanizeStudentType } from "./localization.ts";
     onMount(() => loadStudents());
 </script>
 

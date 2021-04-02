@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     export let arrowColor;
     export let targetRef;
     export let zIndex;

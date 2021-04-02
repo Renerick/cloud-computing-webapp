@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Nav from "./Nav.svelte";
     import GroupExplorer from "./Explorer/GroupExplorer.svelte";
     import GroupsAggregation from "./GroupsAggregation.svelte";

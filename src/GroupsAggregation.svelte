@@ -1,5 +1,5 @@
-<script>
-    import { store, loadGroups } from "./store/GroupsAggregateStore.js";
+<script lang="ts">
+    import { store, loadGroups } from "./store/GroupsAggregateStore.ts";
     import { onMount } from "svelte";
     onMount(() => loadGroups());
 </script>

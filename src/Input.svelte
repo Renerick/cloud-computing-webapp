@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     export let type = "text";
     export let size = undefined;
     export let bsSize = undefined;

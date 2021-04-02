@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     const DEFAULT_ZINDEX = 1000;
     import { onMount } from "svelte";
     import Content from "./Content.svelte";

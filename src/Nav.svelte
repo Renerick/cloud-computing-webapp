@@ -1,6 +1,6 @@
 <div class="flex py-2 justify-between items-center flex-wrap sm:pr-2">
     <div class="flex items-baseline">
-        <i class="text-4xl zi zi-education bg-primary mr-4" />
+        <i class="text-4xl zi zi-education bg-primary mr-4"></i>
         <h1 class="text-4xl">Group management</h1>
     </div>
     <div>

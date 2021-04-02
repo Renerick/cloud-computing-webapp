@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import PropertyGroup from "./PropertyGroup.svelte";
     import { createEventDispatcher } from "svelte";
 
