@@ -2,7 +2,7 @@
     export let student;
 </script>
 
-<div class="h-16 w-full flex items-center hover:bg-active">
-    <img class="h-full w-16" alt="Photo of {student.name}" src={student.avatar} />
-    <h3 class="text-xl ml-4">{student.name}</h3>
+<div class="group py-4 px-6 w-full flex items-center hover:bg-gray-100">
+    <img class="transition transition-transform transform ease-out group-hover:scale-125  rounded-full w-12 h-12" alt="Photo of {student.name}" src={student.avatar} />
+    <h3 class="ml-4">{student.name}</h3>
 </div>

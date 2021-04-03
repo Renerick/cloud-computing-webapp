@@ -1,35 +1,31 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors')
 
-const production = !process.env.ROLLUP_WATCH;
+const production = process.env.RELEASE;
 
 module.exports = {
   purge: {
     enabled: production,
     content: [
-      './**/*.html',
-      './**/*.svelte',
+      './public/**/*.html',
+      './src/**/*.{svelte,js}',
     ],
   },
   theme: {
     fontFamily: {
       'primary': ['"Inter var"', ...defaultTheme.fontFamily.sans]
     },
-    colors: {
-      'primary': "#2589BD",
-      'primary-dark': "#16425B",
-      'text': "#242F40",
-      'background': "#F7FAFC",
-      'white': "#FFFFFF",
-      'active': "#E7ECF0"
-    },
     extend: {
-      inset: {
-        '-full': '-100%'
-      }
-    }
+      colors: {
+        'light-blue': colors.lightBlue,
+      },
+    },
   },
   variants: {
-    borderWidth: ['responsive', 'last', 'hover'],
+    extend: {
+      scale: ['group-hover'],
+      ringWidth: ['group-hover']
+    }
   },
   plugins: []
 }

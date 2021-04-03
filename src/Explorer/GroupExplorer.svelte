@@ -24,31 +24,27 @@
     $: loadStudent(params?.student);
 </script>
 
-<style>
-    .tr-list {
-        transition: opacity 400ms, right 400ms;
-    }
-</style>
-
-<div class="h-full w-full overflow-hidden relative md:flex">
-
-    <div
-        class="absolute md:static w-full md:w-3/12 h-full
-        overflow-y-auto">
-        <GroupExplorerGroupList />
-    </div>
-
-    <div
-        class="tr-list absolute md:static w-full md:w-4/12 bg-white {$store.selectedGroup ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
-        md:opacity-100 border-l border-primary overflow-y-auto overflow-x-hidden h-full">
-
+<div class="flex-1 flex xl:overflow-hidden">
+    <!-- Primary column -->
+    <section aria-labelledby="primary-heading" class="min-w-0 flex-1 h-full relative overflow-hidden lg:order-last">
+        <h1 id="primary-heading" class="sr-only">Account</h1>
+        <!-- Your content -->
         <GroupExplorerGroupInfo />
-    </div>
-    <div
-        class="tr-list absolute md:static w-full md:w-5/12
-        bg-white border-l border-primary {$store.student ? 'opacity-100 right-0' : 'opacity-0 -right-full'}
-        md:opacity-100 overflow-y-auto overflow-x-hidden h-full">
+    </section>
 
-        <GroupExplorerStudentInfo />
-    </div>
+    <!-- Secondary column (hidden on smaller screens) -->
+    <aside class="hidden lg:block lg:flex-shrink-0 lg:order-first overflow-y-auto overflow-x-hidden">
+        <div class="h-full relative flex flex-col w-96 border-r border-gray-200 bg-white">
+            <!-- Your content -->
+            <GroupExplorerGroupList />
+        </div>
+    </aside>
 </div>
+
+<!--    <div-->
+<!--        class="tr-list absolute md:static w-full md:w-5/12-->
+<!--        bg-white border-l border-light-blue-500 {$store.student ? 'opacity-100 right-0' : 'opacity-0 -right-full'}-->
+<!--        md:opacity-100 overflow-y-auto overflow-x-hidden h-full">-->
+
+<!--        <GroupExplorerStudentInfo />-->
+<!--    </div>-->

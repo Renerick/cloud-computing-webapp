@@ -20,12 +20,12 @@
                 inputType={field.inputType}
                 selectOptions={field.inputType === 'select' ? field.getSelectOptions() : []}
                 labelClass="table-cell w-1/3 text-right pr-4 font-bold border-b
-                border-active"
+                border-gray-100"
                 label={field.label}
                 renderer={field.renderer}
                 alwaysActive={field.alwaysActive}
-                outputClass="table-cell hover:bg-active py-2 px-4 cursor-pointer
-                border-b border-active" />
+                outputClass="table-cell hover:bg-gray-100 py-2 px-4 cursor-pointer
+                border-b border-gray-100" />
         </div>
     {/each}
 </div>

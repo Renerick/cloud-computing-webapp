@@ -7,8 +7,7 @@
     import { location, replace } from "svelte-spa-router";
 
     const routes = {
-        "/explore": GroupExplorer,
-        "/explore/:group/:student?": GroupExplorer,
+        "/explore/:group?/:student?": GroupExplorer,
         "/groups": GroupsAggregation,
         "/students": StudentsAggregation
     };
@@ -20,9 +19,9 @@
 
 </style>
 
-<div class="h-screen pl-4 flex flex-col">
+<div class="h-screen flex overflow-hidden">
     <Nav />
-    <div class="h-full">
+    <main class="flex-1 flex overflow-hidden">
         <Router {routes} />
-    </div>
+    </main>
 </div>
