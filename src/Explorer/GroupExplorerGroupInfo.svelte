@@ -46,9 +46,18 @@
 </script>
 
 {#if $store.selectedGroup}
-    <div class="h-full w-full "
-         transition:fly={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}>
+    <div class="h-full w-full ">
         <div class="flex px-4 pt-5 items-baseline lg:justify-between pb-4 border-b border-gray-300">
+            <div class="self-center lg:hidden mr-4">
+                <a href="/#/explore/">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    <span class="sr-only">Back</span>
+                </a>
+            </div>
             <div class="flex-1 min-w-0">
                 <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-xl sm:truncate">{$store.selectedGroup.group.name}</h2>
                 <div class="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
@@ -136,8 +145,5 @@
             </div>
         {/if}
     </div>
-    <SlideOver title={"Student"} show={$store.student}
-               close={() => push(`/explore/${$store.selectedGroup?.group._id}`)}>
-        <GroupExplorerStudentInfo />
-    </SlideOver>
+
 {/if}

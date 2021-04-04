@@ -1,11 +1,14 @@
 <script lang="ts">
-    import { location, replace } from "svelte-spa-router";
     import {
         humanizeStudentType,
         humanizeStudyingForm,
         getStudyingFormTranslation,
         getStudentTypeTranslation
     } from "../localization.ts";
+    import { location, replace, push } from "svelte-spa-router";
+    import { scale, fly, fade } from "svelte/transition";
+    import { cubicOut } from "svelte/easing";
+    import SlideOver from "../components/SlideOver.svelte";
 
     import GroupExplorerGroupList from "./GroupExplorerGroupList.svelte";
     import GroupExplorerGroupInfo from "./GroupExplorerGroupInfo.svelte";
@@ -24,27 +27,26 @@
     $: loadStudent(params?.student);
 </script>
 
-<div class="flex-1 flex xl:overflow-hidden">
+<div class="flex-1 relative lg:flex xl:overflow-hidden">
     <!-- Primary column -->
-    <section aria-labelledby="primary-heading" class="min-w-0 flex-1 h-full relative overflow-hidden lg:order-last">
-        <h1 id="primary-heading" class="sr-only">Account</h1>
-        <!-- Your content -->
-        <GroupExplorerGroupInfo />
-    </section>
+    {#if $store.selectedGroup}
+        <section aria-labelledby="primary-heading"
+                 transition:fly={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}
+                 class="lg:block bg-gray-50 min-w-0 flex-1 h-full z-30 w-full absolute lg:relative overflow-hidden lg:order-last">
+            <h1 id="primary-heading" class="sr-only">Account</h1>
+            <!-- Your content -->
+            <GroupExplorerGroupInfo />
+        </section>
+    {/if}
 
     <!-- Secondary column (hidden on smaller screens) -->
-    <aside class="hidden lg:block lg:flex-shrink-0 lg:order-first overflow-y-auto overflow-x-hidden">
-        <div class="h-full relative flex flex-col w-96 border-r border-gray-200 bg-white">
-            <!-- Your content -->
-            <GroupExplorerGroupList />
-        </div>
+    <aside class="absolute w-full lg:w-96 top-0 h-full lg:relative lg:flex-shrink-0 lg:order-first ">
+        <!-- Your content -->
+        <GroupExplorerGroupList />
     </aside>
+    <SlideOver title={"Student"} show={$store.student}
+               close={() => push(`/explore/${$store.selectedGroup?.group._id}`)}>
+        <GroupExplorerStudentInfo />
+    </SlideOver>
 </div>
 
-<!--    <div-->
-<!--        class="tr-list absolute md:static w-full md:w-5/12-->
-<!--        bg-white border-l border-light-blue-500 {$store.student ? 'opacity-100 right-0' : 'opacity-0 -right-full'}-->
-<!--        md:opacity-100 overflow-y-auto overflow-x-hidden h-full">-->
-
-<!--        <GroupExplorerStudentInfo />-->
-<!--    </div>-->

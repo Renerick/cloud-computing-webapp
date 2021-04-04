@@ -9,7 +9,7 @@
 
 {#if show}
 
-    <section use:portal={"body"} class="fixed inset-0 overflow-hidden" role="dialog" aria-modal="true">
+    <section use:portal={"body"} class="fixed z-50 inset-0 overflow-hidden" role="dialog" aria-modal="true">
         <!--overlay-->
         <div transition:fade={{duration: 200, }} on:click={close} class="absolute inset-0 bg-gray-800 opacity-50" aria-hidden="true"></div>
 
