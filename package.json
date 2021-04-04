@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "dev": "cross-env NODE_ENV=development rollup -c -w",
     "start": "sirv public --no-clear",
     "validate": "svelte-check"
   },
@@ -15,8 +15,10 @@
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-typescript": "^8.0.0",
+    "@tailwindcss/jit": "^0.1.18",
     "@tsconfig/svelte": "^1.0.0",
     "autoprefixer": "^10.0.4",
+    "cross-env": "^7.0.3",
     "postcss": "^8.1.14",
     "rollup": "^2.34.2",
     "rollup-plugin-livereload": "^2.0.0",
