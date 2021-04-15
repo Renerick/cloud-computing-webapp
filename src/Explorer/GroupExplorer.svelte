@@ -27,25 +27,19 @@
     $: loadStudent(params?.student);
 </script>
 
-<div class="flex-1 relative lg:flex xl:overflow-hidden">
-    <!-- Primary column -->
+<div class="h-full relative lg:flex xl:overflow-hidden">
+    <aside class="absolute w-full lg:w-96 top-0 h-full lg:relative lg:flex-shrink-0">
+        <GroupExplorerGroupList />
+    </aside>
+
     {#if $store.selectedGroup}
-        <section aria-labelledby="primary-heading"
-                 transition:fly={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}
-                 class="lg:block bg-gray-50 min-w-0 flex-1 h-full z-30 w-full absolute lg:relative overflow-hidden lg:order-last">
-            <h1 id="primary-heading" class="sr-only">Account</h1>
-            <!-- Your content -->
+        <section transition:fly={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}
+                 class="lg:block bg-gray-50 min-w-0 flex-1 h-full z-30 w-full absolute lg:relative overflow-hidden">
             <GroupExplorerGroupInfo />
         </section>
     {/if}
-
-    <!-- Secondary column (hidden on smaller screens) -->
-    <aside class="absolute w-full lg:w-96 top-0 h-full lg:relative lg:flex-shrink-0 lg:order-first ">
-        <!-- Your content -->
-        <GroupExplorerGroupList />
-    </aside>
-    <SlideOver title={"Student"} show={$store.student}
-               close={() => push(`/explore/${$store.selectedGroup?.group._id}`)}>
+    <SlideOver title={"Student"} show={$store.selectedStudent}
+               close={() => push(`/explore/${$store.selectedGroup?._id}`)}>
         <GroupExplorerStudentInfo />
     </SlideOver>
 </div>

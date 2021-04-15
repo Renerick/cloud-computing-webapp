@@ -54,7 +54,7 @@ export default {
             sourceMap: !production,
             extensions: ['.css', '.pcss'],
             plugins: [
-                require('@tailwindcss/jit'),
+                require('tailwindcss'),
                 require('autoprefixer'),
             ]
         }),

@@ -2,6 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
+    mode: process.env.NODE_ENV ? 'jit' : undefined,
     purge:
         [
             "./public/**/*.html",
@@ -9,9 +10,6 @@ module.exports = {
         ]
     ,
     theme: {
-        fontFamily: {
-            "primary": ["\"Inter var\"", ...defaultTheme.fontFamily.sans]
-        },
         extend: {
             colors: {
                 "light-blue": colors.lightBlue

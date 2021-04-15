@@ -6,7 +6,7 @@ import { data } from "./GroupsData";
 const store_ = {
     groups: [],
     selectedGroup: null,
-    student: null
+    selectedStudent: null
 }
 
 export let store = writable(store_);
@@ -24,7 +24,7 @@ export function loadStudents(group) {
             s.selectedGroup = null
         } else {
             s.selectedGroup = {
-                group: data.groups.find(g => g._id == group),
+                ...data.groups.find(g => g._id == group),
                 students: data.students.filter(s => s.group === group)
             };
         }
@@ -51,7 +51,7 @@ export function createStudent(groupId) {
 
 export function loadStudent(student) {
     store.update((s) => {
-        s.student = data.students.find(s => s._id == student);
+        s.selectedStudent = data.students.find(s => s._id == student);
         return s;
     })
 }
@@ -66,6 +66,7 @@ export function updateGroup(group, field, value) {
 export function deleteGroup(group) {
     store.update((s) => {
         data.groups = data.groups.filter(g => g !== group);
+        s.groups = data.groups;
         return s;
     })
 }
@@ -102,7 +103,7 @@ export function deleteStudent(student) {
 }
 
 store.subscribe(v => {
-    if (v.student && (!v.selectedGroup || v.student.group !== v.selectedGroup.group._id)) {
-        store.set({ ...v, student: null })
+    if (v.selectedStudent && (!v.selectedGroup || v.selectedStudent.group !== v.selectedGroup._id)) {
+        store.set({ ...v, selectedStudent: null })
     }
 })

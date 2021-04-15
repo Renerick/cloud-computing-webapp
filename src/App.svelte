@@ -19,9 +19,9 @@
 
 </style>
 
-<div class="h-screen flex overflow-hidden">
+<div class="h-screen flex overflow-hidden items-stretch">
     <Nav />
-    <main class="flex-1 flex overflow-hidden">
+    <main class="flex-1 overflow-y-auto overflow-x-hidden">
         <Router {routes} />
     </main>
 </div>

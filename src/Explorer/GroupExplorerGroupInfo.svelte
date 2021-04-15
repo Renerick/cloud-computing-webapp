@@ -50,7 +50,7 @@
         <div class="flex px-4 pt-5 items-baseline lg:justify-between pb-4 border-b border-gray-300">
             <div class="self-center lg:hidden mr-4">
                 <a href="/#/explore/">
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    <svg class="w-5 h-5 text-light-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -59,7 +59,7 @@
                 </a>
             </div>
             <div class="flex-1 min-w-0">
-                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-xl sm:truncate">{$store.selectedGroup.group.name}</h2>
+                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-xl sm:truncate">{$store.selectedGroup.name}</h2>
                 <div class="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
                     <div class="mt-2 flex items-center text-sm text-gray-500">
                         <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        Year {$store.selectedGroup.group.year}
+                        Year {$store.selectedGroup.year}
                     </div>
                     <div class="mt-2 flex items-center text-sm text-gray-500">
                         <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
-                        {humanizeStudyingForm($store.selectedGroup.group.studyingForm)}
+                        {humanizeStudyingForm($store.selectedGroup.studyingForm)}
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
 
                 <button
                     class="button button-sm button-ghost"
-                    on:click={() => createStudent($store.selectedGroup.group._id)}>
+                    on:click={() => createStudent($store.selectedGroup._id)}>
                     <svg class="button-sm-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
                          viewBox="0 0 24 24"
                          stroke="currentColor">
@@ -118,10 +118,10 @@
                             <button
                                 class="button button-md button-danger text-white py-2 px-4"
                                 on:click={() => {
-                                deleteGroup($store.selectedGroup.group);
+                                deleteGroup($store.selectedGroup);
                                 replace('/explore');
                             }}>
-                                Delete group {$store.selectedGroup.group.name} anyway?
+                                Delete group {$store.selectedGroup.name} anyway?
                             </button>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
                     {#each $store.selectedGroup.students as item (item._id)}
                         <li class="">
                             <a
-                                href="/#/explore/{$store.selectedGroup.group._id}/{item._id}">
+                                href="/#/explore/{$store.selectedGroup._id}/{item._id}">
                                 <StudentListItem student={item} />
                             </a>
                         </li>

@@ -39,7 +39,7 @@
                         <a href="/#/explore/{item._id}" class="focus:outline-none">
                             <GroupListItem
                                 group={item}
-                                active={$store.selectedGroup && item === $store.selectedGroup.group} />
+                                active={$store.selectedGroup && item === $store.selectedGroup} />
                         </a>
                     </div>
                 </div>

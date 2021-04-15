@@ -60,16 +60,16 @@
     ];
 </script>
 
-{#if $store.student}
+{#if $store.selectedStudent}
     <div class="pl-4 pt-4 h-full">
         <img
             class="mx-auto"
-            alt="Full size photo of {$store.student.name}"
-            src={$store.student.avatar} />
+            alt="Full size photo of {$store.selectedStudent.name}"
+            src={$store.selectedStudent.avatar} />
 
         <PropertiesForm
-            object={$store.student}
-            on:updated={e => updateStudent($store.student, e.detail.key, e.detail.value)}
+            object={$store.selectedStudent}
+            on:updated={e => updateStudent($store.selectedStudent, e.detail.key, e.detail.value)}
             fieldsDescription={studentParameters} />
     </div>
 {/if}
