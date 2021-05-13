@@ -33,7 +33,7 @@
     </aside>
 
     {#if $store.selectedGroup}
-        <section transition:fly={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}
+        <section transition:fly|local={{ delay: 0, duration: 250, x: 100, y: 0, opacity: 0, easing: cubicOut }}
                  class="lg:block bg-gray-50 min-w-0 flex-1 h-full z-30 w-full absolute lg:relative overflow-hidden">
             <GroupExplorerGroupInfo />
         </section>

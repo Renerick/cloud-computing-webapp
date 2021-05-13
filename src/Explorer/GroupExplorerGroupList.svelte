@@ -33,16 +33,16 @@
     <ul>
         {#each $store.groups as item (item._id)}
             <li class="bg-white">
-                <div
-                    class="relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-light-blue-500">
-                    <div class="flex-1 min-w-0">
-                        <a href="/#/explore/{item._id}" class="focus:outline-none">
+                <a href="/#/explore/{item._id}" class="focus:outline-none">
+                    <div
+                        class="relative px-6 py-5 flex items-center space-x-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-light-blue-500">
+                        <div class="flex-1 min-w-0">
                             <GroupListItem
                                 group={item}
                                 active={$store.selectedGroup && item === $store.selectedGroup} />
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </li>
         {/each}
     </ul>
